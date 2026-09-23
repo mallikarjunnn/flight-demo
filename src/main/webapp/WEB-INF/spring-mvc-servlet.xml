@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Scan Java classes for @Controller @Service @Repository and create beans (IoC) -->
+    <context:component-scan base-package="com.flightbooking"/>
+
+    <!-- Enable @RequestMapping, @GetMapping, form binding, etc. -->
+    <mvc:annotation-driven/>
+
+    <!-- Let Tomcat serve /css/** as static files instead of sending them to controllers -->
+    <mvc:resources mapping="/css/**" location="/css/"/>
+
+    <!-- JSP view resolver: return "index" from a controller -> /WEB-INF/views/index.jsp -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- Load jdbc.url, jdbc.username, jdbc.password from db.properties -->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--
+      DataSource = the connection factory to MySQL.
+      Spring Core DI: we define this bean once, then inject it into JdbcTemplate.
+    -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!-- JdbcTemplate: you write SQL, Spring opens/closes connections and maps rows -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- Turns @Transactional on service methods into real DB transactions -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>

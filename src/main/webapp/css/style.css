@@ -1,0 +1,177 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Segoe UI, Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1d2a3a;
+}
+
+a {
+    color: #1a56a8;
+    text-decoration: none;
+}
+
+.nav {
+    background: #0b3d91;
+    color: #fff;
+    padding: 14px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav a {
+    color: #fff;
+    margin-left: 18px;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: 0.4px;
+}
+
+.wrap {
+    max-width: 980px;
+    margin: 28px auto;
+    padding: 0 16px 40px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 8px 24px rgba(13, 38, 76, 0.08);
+    margin-bottom: 20px;
+}
+
+h1, h2 {
+    margin-top: 0;
+}
+
+.hero h1 {
+    color: #0b3d91;
+}
+
+.row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c9d4e5;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.field {
+    flex: 1;
+    min-width: 160px;
+}
+
+.btn {
+    display: inline-block;
+    background: #0b3d91;
+    color: #fff;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background: #082c68;
+}
+
+.btn-danger {
+    background: #b42318;
+}
+
+.btn-danger:hover {
+    background: #8f1b13;
+}
+
+.btn-light {
+    background: #e8eef8;
+    color: #0b3d91;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px 8px;
+    border-bottom: 1px solid #e4ebf4;
+    font-size: 14px;
+}
+
+th {
+    background: #eef3fb;
+}
+
+.alert {
+    padding: 12px 14px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.alert-error {
+    background: #fdecec;
+    color: #8f1b13;
+}
+
+.alert-ok {
+    background: #e8f7ee;
+    color: #0d6a32;
+}
+
+.muted {
+    color: #5b6b80;
+}
+
+.ticket {
+    border: 2px dashed #0b3d91;
+    padding: 18px;
+    border-radius: 8px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-ok {
+    background: #e8f7ee;
+    color: #0d6a32;
+}
+
+.badge-no {
+    background: #fdecec;
+    color: #8f1b13;
+}
+
+.footer {
+    text-align: center;
+    color: #6b7c90;
+    font-size: 13px;
+    padding: 10px 0 30px;
+}
